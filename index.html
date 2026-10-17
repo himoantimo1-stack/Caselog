@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data: blob:; style-src 'self'; script-src 'self'; connect-src 'self'; manifest-src 'self'; worker-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="theme-color" content="#F2F4F3" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121917" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="CaseLog">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="robots" content="noindex, nofollow">
+  <title>CaseLog</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Shown in Safari on iPhone until the app is opened from the Home Screen -->
+  <section id="install" class="login" hidden>
+    <div class="login-inner">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"><i class="sy-yellow"></i><i class="sy-violet"></i><i class="sy-blue"></i><i class="sy-grey"></i><i class="sy-green"></i></span>
+        <h1>CaseLog</h1>
+      </div>
+      <p class="login-lede">Your logbook lives on this iPhone only. Add CaseLog to your Home Screen first, so your cases are kept inside the app.</p>
+      <ol class="install-steps">
+        <li><span>Tap the Share button in Safari's toolbar</span>
+          <svg class="share-ico" viewBox="0 0 24 24" aria-label="Share button"><path d="M12 3v12 M8 7l4-4 4 4 M6 11H5v10h14V11h-1"/></svg></li>
+        <li><span>Choose <b>Add to Home Screen</b>. Scroll the list if you don't see it.</span></li>
+        <li><span>Open CaseLog from your Home Screen and log from there.</span></li>
+      </ol>
+      <p class="hint">Cases saved in a Safari tab stay in Safari and don't appear in the Home Screen app.</p>
+      <button class="btn btn-quiet btn-block" id="use-browser" type="button">Use in Safari anyway</button>
+    </div>
+  </section>
+
+  <!-- App -->
+  <div id="app" hidden>
+    <header class="topbar">
+      <h1 id="view-title">Logbook</h1>
+      <button class="sync-pill" id="backup-pill" type="button" aria-live="polite" hidden><span class="dot"></span><span class="label">Backed up</span></button>
+    </header>
+    <main id="view" tabindex="-1"></main>
+    <nav class="tabbar" aria-label="Main">
+      <button class="tab" data-view="log" aria-current="page"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h11l3 3v13H5z M8 9h8 M8 13h8 M8 17h5"/></svg><span>Logbook</span></button>
+      <button class="tab" data-view="reports"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20V10 M10 20V4 M15 20v-7 M20 20v-11"/></svg><span>Progress</span></button>
+      <button class="tab tab-new" id="new-btn" aria-label="Log a new case"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14 M5 12h14"/></svg></button>
+      <button class="tab" data-view="meds"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="9" width="16" height="7" rx="3.5" transform="rotate(-35 12 12.5)"/><path d="M9.6 8.9l4.8 7.2"/></svg><span>Meds</span></button>
+      <button class="tab" data-view="more"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16 M4 12h16 M4 17h16"/></svg><span>More</span></button>
+    </nav>
+  </div>
+
+  <!-- Full-screen editor sheet -->
+  <section id="sheet" class="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheet-title"></section>
+
+  <!-- Action sheet (new case from template) -->
+  <div id="action" class="action" hidden>
+    <div class="action-backdrop" data-close></div>
+    <div class="action-panel" role="dialog" aria-modal="true" aria-label="Start a case"></div>
+  </div>
+
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+  <script src="store.js"></script>
+  <script src="options.js"></script>
+  <script src="charts.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
